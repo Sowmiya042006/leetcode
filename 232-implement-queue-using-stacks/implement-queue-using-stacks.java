@@ -1,30 +1,41 @@
 class MyQueue {
-    
-    Queue<Integer>q;
+
+    Stack<Integer>st;
+    Stack<Integer>cur;
     public MyQueue() 
     {
-        q=new LinkedList<>();
+        st=new Stack<>();
+        cur=new Stack<>();
     }
-    
     public void push(int x) 
     {
-        q.offer(x);
+        while(!st.isEmpty())
+        {
+          cur.push(st.pop());
+        }
+        st.push(x);
+        while(!cur.isEmpty())
+        {
+            st.push(cur.pop());
+        }
+
     }
     
     public int pop() 
     {
-        return q.poll();
+        return st.pop();
     }
     
     public int peek() 
     {
-        return q.peek();
+        return st.peek();
     }
     
     public boolean empty() 
     {
-        return q.isEmpty();
+        return st.isEmpty();
     }
+    
 }
 
 /**
