@@ -3,18 +3,22 @@ class MyLinkedList
     class Node
     {
         int val;
+        Node prev;
         Node next;
         Node(int val)
         {
             this.val=val;
         }
     }
-    Node head,tail;
     int c;
-    public MyLinkedList()
+    Node head;
+    Node tail;
+    public MyLinkedList() 
     {
-        head=tail=null;
         c=0;
+        head=null;
+        tail=null;
+        
     }
     public int get(int index) 
     {
@@ -25,27 +29,27 @@ class MyLinkedList
         Node temp=head;
         for(int i=0;i<index;i++)
         {
-            temp=temp.next;
+           temp=temp.next;
         }
         return temp.val;
     }
-    
     public void addAtHead(int val) 
     {
-       Node n=new Node(val);
-       if(head==null)
-       {
-        head=n;
-        tail=n;
-       }
-       else
-       {
-        n.next=head;
-        head=n;
-       }
-       c++;
-        
+        Node n=new Node(val);
+        if(head==null)
+        {
+            head=n;
+            tail=n;
+        }
+        else
+        {
+            n.next=head;
+            head.prev=n;
+            head=n;
+        }
+        c++;
     }
+    
     public void addAtTail(int val) 
     {
         Node n=new Node(val);
@@ -57,6 +61,7 @@ class MyLinkedList
         else
         {
             tail.next=n;
+            n.prev=tail;
             tail=n;
         }
         c++;
@@ -64,38 +69,38 @@ class MyLinkedList
     
     public void addAtIndex(int index, int val) 
     {
-        Node n=new Node(val);
         if(index<0 || index>c)
         {
             return;
         }
         if(index==0)
         {
-           addAtHead(val);
-           return;
+            addAtHead(val); 
         }
         else if(index==c)
         {
             addAtTail(val);
-            return;
         }
         else
         {
-             Node temp=head;
+            Node temp=head;
+            Node n=new Node(val);
             for(int i=0;i<index-1;i++)
             {
                 temp=temp.next;
             }
+            n.prev=temp;
             n.next=temp.next;
             temp.next=n;
+            n.next.prev=n;
+            c++;
         }
-        c++;
+    
         
     }
     
-    public void deleteAtIndex(int index)
+    public void deleteAtIndex(int index) 
     {
-        Node temp=head;
         if(index<0 || index>=c)
         {
             return;
@@ -107,20 +112,35 @@ class MyLinkedList
             {
                 tail=null;
             }
+            else
+            {
+                head.prev=null;
+            }
+            c--;
+        }
+        else if(index==c-1)
+        {
+            tail=tail.prev;
+            if(tail==null)
+            {
+                head=null;
+            }
+            else
+            {
+                tail.next=null;
+            }
             c--;
         }
         else
         {
+            Node temp=head;
             for(int i=0;i<index-1;i++)
             {
                 temp=temp.next;
             }
             temp.next=temp.next.next;
+            temp.next.prev=temp;
             c--;
-            if(temp.next==null)
-            {
-                tail=temp;
-            }
         }
     }
 }
