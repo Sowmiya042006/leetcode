@@ -3,7 +3,7 @@ class Solution {
     {
         String str=s.trim();
         int c=0;
-        /*for(int i=str.length()-1;i>=0;i--)
+        for(int i=str.length()-1;i>=0;i--)
         {
             if(Character.isLetter(str.charAt(i)))
             {
@@ -14,10 +14,8 @@ class Solution {
                 break;
             }
         }
-        return c;*/
-        String r[]=str.split(" ");
-        int l=r.length;
-        return r[l-1].length();
+        return c;
+       
 
     }
 }
