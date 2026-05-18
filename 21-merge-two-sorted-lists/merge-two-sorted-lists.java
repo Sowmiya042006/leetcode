@@ -11,21 +11,21 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) 
     {
-        ListNode dummy=new ListNode(0);
-        ListNode temp=dummy;
+        ListNode r=new ListNode();
+        ListNode temp=r;
         ListNode c1=list1;
         ListNode c2=list2;
         while(c1!=null && c2!=null)
         {
-            if(c1.val>c2.val)
-            {
-                temp.next=c2;
-                c2=c2.next;
-            }
-            else
+            if(c1.val<=c2.val)
             {
                 temp.next=c1;
                 c1=c1.next;
+            }
+            else if(c1.val>c2.val)
+            {
+                temp.next=c2;
+                c2=c2.next;
             }
             temp=temp.next;
         }
@@ -37,6 +37,6 @@ class Solution {
         {
             temp.next=c2;
         }
-        return dummy.next;
+        return r.next;
     }
 }
