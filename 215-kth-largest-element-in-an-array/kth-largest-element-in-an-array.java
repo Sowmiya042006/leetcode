@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<nums.length;i++)
         {
             q.offer(nums[i]);
-            while(q.size()>k)
+            if(q.size()>k)
             {
                 q.poll();
             }
