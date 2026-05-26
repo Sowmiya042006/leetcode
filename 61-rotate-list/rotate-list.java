@@ -8,34 +8,40 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution 
-{
+class Solution {
+
     public ListNode rotateRight(ListNode head, int k) 
     {
         if(head==null || head.next==null)
         {
             return head;
         }
-        int len=1;
-        ListNode temp=head;
-        while(temp.next!=null)
+        int size=1;
+        ListNode t=head;
+        while(t.next!=null)
         {
-            temp=temp.next;
-            len++;
+            size++;
+            t=t.next;
         }
-        k=k%len;
-        for(int i=0;i<k;i++)
+        k=k%size;
+        for(int i=k;i>0;i--)
         {
-            temp=head;
-            while(temp.next.next!=null)
+             ListNode temp=head;
+            ListNode prev=null;
+            while(temp.next!=null)
             {
+                if(temp.next!=null && temp.next.next==null)
+                {
+                  prev=temp;
+                }
                 temp=temp.next;
             }
-            ListNode last=temp.next;
-            temp.next=null;
-            last.next=head;
-            head=last;
+            prev.next=null;
+            temp.next=head;
+            head=temp;
+            
         }
         return head;
+        
     }
 }
