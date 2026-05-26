@@ -8,27 +8,33 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution 
-{
+class Solution {
     public ListNode oddEvenList(ListNode head) 
     {
-       
-        if(head==null || head.next==null)
+      ListNode temp=head;
+      ListNode oddhead=new ListNode();
+      ListNode odd=oddhead;
+      ListNode evenhead=new ListNode();
+      ListNode even=evenhead;
+      int c=1;
+      while(temp!=null)
+      {
+        if(c%2!=0)
         {
-            return head;
-        }
-        ListNode odd=head;
-        ListNode even=odd.next;
-        ListNode evenhead=even;
-        while(even!=null && even.next!=null)
-       {
-            odd.next=even.next;
+            odd.next=temp;
             odd=odd.next;
-            even.next=odd.next;
+        }
+        else
+        {
+            even.next=temp;
             even=even.next;
-       }
-        odd.next=evenhead;
-        return head;
+        }
+        c++;
+        temp=temp.next;
+      }
+      even.next=null;
+      odd.next=evenhead.next;
+      return oddhead.next;
 
     }
 }
