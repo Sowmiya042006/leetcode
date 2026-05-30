@@ -1,5 +1,4 @@
 class MyQueue {
-
     Stack<Integer>st;
     Stack<Integer>cur;
     public MyQueue() 
@@ -11,31 +10,26 @@ class MyQueue {
     {
         while(!st.isEmpty())
         {
-          cur.push(st.pop());
+            cur.push(st.pop());
         }
         st.push(x);
         while(!cur.isEmpty())
         {
             st.push(cur.pop());
         }
-
     }
-    
-    public int pop() 
-    {
+    public int pop() {
         return st.pop();
     }
     
-    public int peek() 
-    {
+    public int peek() {
         return st.peek();
+        
     }
     
-    public boolean empty() 
-    {
+    public boolean empty() {
         return st.isEmpty();
     }
-    
 }
 
 /**
