@@ -1,5 +1,4 @@
 class MyStack {
-    
     Queue<Integer>q;
     public MyStack() 
     {
@@ -8,14 +7,14 @@ class MyStack {
     public void push(int x) 
     {
         q.offer(x);
+        int n=q.size()-1;
         int i=0;
-        while(i<q.size()-1)
+        while(i<n)
         {
             q.offer(q.poll());
             i++;
         }
     }
-    
     public int pop() 
     {
         return q.poll();
