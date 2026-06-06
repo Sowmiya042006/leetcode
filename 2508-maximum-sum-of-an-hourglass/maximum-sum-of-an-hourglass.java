@@ -1,7 +1,7 @@
 class Solution {
     public int maxSum(int[][] grid) 
     {
-        int max=Integer.MIN_VALUE;
+        int max=0;
         int m=grid.length;
         int n=grid[0].length;
         for(int i=0;i<m-2;i++)
